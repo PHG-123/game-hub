@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PULSE//SHIFT</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800;900&family=Space+Mono:wght@400;700&display=swap');
+:root{--bg:#080b13;--panel:#101521;--line:#252c3b;--muted:#8790a5;--white:#f3f6ff;--cyan:#56f5e2;--purple:#9d7cff;--pink:#ff5ec4;--mono:'Space Mono',monospace;--display:'Barlow Condensed',Impact,sans-serif}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at 80% 0%,#151832 0%,transparent 45%),var(--bg);color:var(--white);font-family:var(--mono);min-height:100vh}button{font:inherit;cursor:pointer;color:inherit}.shell{max-width:1250px;margin:auto;padding:0 34px}.topbar{height:92px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line)}.brand{display:flex;align-items:center;gap:12px;font:800 23px var(--display);letter-spacing:1px}.brand>div>span{color:var(--cyan)}.brand small{display:block;color:var(--muted);font:10px var(--mono);letter-spacing:2px;margin-top:2px}.brand-mark{color:var(--cyan);font-size:36px}.top-stats{display:flex;gap:30px}.top-stats div{display:grid;gap:4px}.top-stats small,.game-pr small,.game-hud small,.result-stats small{font-size:9px;color:var(--muted);letter-spacing:1.5px}.top-stats b{font-size:13px}.screen{display:none;padding:35px 0 25px;animation:fade .25s ease}.screen.active{display:block}@keyframes fade{from{opacity:.25;transform:translateY(4px)}to{opacity:1;transform:none}}#home{display:grid;grid-template-columns:1.35fr .75fr;gap:24px}.hero{min-height:390px;padding:25px 8px 20px;position:relative;overflow:hidden}.hero:after{content:'◈';position:absolute;right:12px;top:45px;font-size:210px;color:#1c2940;opacity:.3;z-index:-1;transform:rotate(20deg)}.eyebrow{font-size:10px;letter-spacing:2px;color:var(--cyan);font-weight:700}.eyebrow i{display:inline-block;width:7px;height:7px;background:var(--cyan);border-radius:50%;box-shadow:0 0 12px var(--cyan);margin-right:8px}.hero h1{font:900 clamp(60px,8vw,96px)/.85 var(--display);letter-spacing:-1px;margin:25px 0 20px}.hero h1 span,.section-title h2 span{color:var(--cyan);text-shadow:0 0 25px #56f5e233}.hero p{color:#a5adc0;font-size:12px;line-height:1.8}.hero-actions{display:flex;gap:12px;margin-top:27px}.primary,.secondary{padding:14px 19px;font-size:11px;font-weight:700;letter-spacing:1px;border:1px solid transparent;transition:.2s}.primary{background:var(--cyan);color:#071015;box-shadow:0 0 25px #56f5e21c}.primary:hover{transform:translateY(-2px);box-shadow:0 0 25px #56f5e255}.primary span{margin-left:18px}.secondary{background:#111725;border-color:#31394b;color:#e2e7f5}.secondary:hover{border-color:var(--cyan)}.hero-foot{display:flex;gap:30px;position:absolute;bottom:8px;color:#626d84;font-size:9px;letter-spacing:1px}.side-panel{background:linear-gradient(150deg,#131a2a,#0d111c);border:1px solid var(--line);padding:22px 24px;min-height:390px;position:relative}.panel-head{display:flex;justify-content:space-between;font-size:9px;letter-spacing:1.4px;color:#aeb6c8}.live-dot{color:var(--cyan);font-size:8px}.rank-emblem{font-size:66px;color:var(--cyan);text-align:center;margin:28px 0 0;text-shadow:0 0 30px #56f5e255}.rank-name{text-align:center;font:800 25px var(--display);letter-spacing:2px}.rating-big{text-align:center;font:800 40px var(--display);margin:0}.rating-big small{font:11px var(--mono);color:var(--cyan)}.progress-track{height:5px;background:#272e40;overflow:hidden}.progress-track>div{height:100%;width:0;background:linear-gradient(90deg,var(--cyan),var(--purple));transition:width .3s}.side-panel .progress-track{margin-top:17px}.rank-range{display:flex;justify-content:space-between;color:#7f8aa1;font-size:9px;margin-top:7px}.side-divider{height:1px;background:var(--line);margin:23px 0 15px}.mini-row{display:flex;justify-content:space-between;font-size:9px;color:#8994a9;margin:12px 0}.mini-row b{color:var(--white)}.offline-note{font-size:8px;color:#626d84;line-height:1.6;margin-top:18px}.bottom-grid{grid-column:1/-1;display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.feature-card{display:flex;gap:14px;align-items:center;padding:17px;background:#0e1320;border:1px solid #202839}.feature-icon{font-size:26px;color:var(--cyan)}.feature-card b{font-size:10px;letter-spacing:.5px}.feature-card p{margin:6px 0 0;font-size:9px;color:var(--muted);line-height:1.6}.section-title{display:flex;align-items:end;justify-content:space-between;margin:10px 0 25px}.section-title h2{font:800 52px/.9 var(--display);margin:10px 0 0}.text-btn{background:none;border:0;color:var(--muted);font-size:10px;letter-spacing:1px}.text-btn:hover{color:var(--cyan)}.level-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.level-card{border:1px solid var(--line);background:#101522;padding:0;text-align:left;transition:.2s;overflow:hidden}.level-card:hover{border-color:var(--cyan);transform:translateY(-3px)}.level-art{height:115px;position:relative;overflow:hidden;background:linear-gradient(130deg,#172b3b,#17172e);display:flex;align-items:center;justify-content:center}.level-art:before{content:'';position:absolute;width:150%;height:1px;background:#56f5e255;transform:rotate(-25deg);box-shadow:0 0 20px var(--cyan)}.level-art:after{content:'◈';font-size:68px;color:var(--cyan);text-shadow:0 0 30px #56f5e2aa;transform:rotate(20deg)}.level-card:nth-child(2) .level-art{background:linear-gradient(130deg,#301a3a,#12192f)}.level-card:nth-child(2) .level-art:after{color:var(--pink);text-shadow:0 0 30px #ff5ec4aa;content:'✦'}.level-card:nth-child(3) .level-art{background:linear-gradient(130deg,#3b2416,#151728)}.level-card:nth-child(3) .level-art:after{color:#ffb15e;text-shadow:0 0 30px #ffb15eaa;content:'⬡'}.level-info{padding:18px}.level-meta{display:flex;justify-content:space-between;color:var(--muted);font-size:9px}.level-info h3{font:800 25px var(--display);margin:10px 0 5px}.level-info p{font-size:10px;color:#8e98ad;line-height:1.7;min-height:34px}.level-bottom{display:flex;justify-content:space-between;align-items:center;border-top:1px solid var(--line);padding-top:13px;margin-top:13px;color:var(--cyan);font-size:10px}.level-bottom b{color:var(--white)}.hint-box{margin-top:20px;padding:15px;background:#0f1420;border:1px solid var(--line);display:flex;gap:25px;color:var(--muted);font-size:9px}.hint-box span{color:var(--white)}.game-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}.game-header h2{font:800 30px var(--display);margin:3px 0}.game-header small{font-size:9px;letter-spacing:1px;color:var(--muted)}.game-pr{text-align:right}.game-pr b{display:block;color:var(--cyan);font-size:14px;margin-top:5px}.canvas-wrap{position:relative;border:1px solid #30384a;background:#090e19;overflow:hidden}.canvas-wrap canvas{display:block;width:100%;height:auto;max-height:55vh}.game-overlay{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:#070a13c9;backdrop-filter:blur(4px)}.game-overlay.hidden{display:none}.overlay-card{text-align:center;padding:25px}.overlay-card h2{font:800 40px var(--display);margin:12px 0}.overlay-card p{font-size:11px;color:#a1abc0;margin-bottom:22px}.game-hud{display:flex;align-items:center;gap:17px;margin-top:18px}.game-hud>div:not(.progress-track){display:grid;gap:5px;min-width:65px}.game-hud b{font-size:12px}.game-hud .progress-track{flex:1}.game-tip{font-size:9px;color:#717c92;letter-spacing:.5px;margin-top:20px}.results-card{max-width:690px;margin:20px auto;background:#111725;border:1px solid var(--line);padding:35px;text-align:center}.result-icon{font-size:64px;color:var(--cyan);text-shadow:0 0 25px #56f5e266;margin:10px}.results-card h2{font:900 52px var(--display);margin:0}.results-card>p{font-size:11px;color:var(--muted)}.result-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:28px 0}.result-stats>div{padding:18px 8px;background:#0b101a;border:1px solid var(--line);display:grid;gap:10px}.result-stats b{font:800 23px var(--display);color:var(--cyan)}.result-actions{display:flex;justify-content:center;gap:10px;flex-wrap:wrap}.rank-list{display:grid;gap:9px}.rank-row{display:flex;align-items:center;gap:17px;padding:15px 18px;background:#101522;border:1px solid var(--line)}.rank-row.current{border-color:var(--cyan);background:#122027}.rank-row .rank-symbol{font-size:26px;color:var(--rank-color);width:38px;text-align:center}.rank-row .rank-desc{flex:1}.rank-row b{font:800 22px var(--display);letter-spacing:1px}.rank-row p{margin:4px 0 0;font-size:9px;color:var(--muted)}.rank-row .rank-pts{font-size:10px;color:#aab4c8}footer{border-top:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;padding:22px 0;color:#657087;font-size:9px;letter-spacing:1px}footer b{color:var(--cyan)}.reset-btn{border:0;background:none;color:#667188;font:9px var(--mono);cursor:pointer}.reset-btn:hover{color:var(--pink)}
+@media(max-width:760px){.shell{padding:0 16px}.topbar{height:76px}.brand{font-size:19px}.top-stats{gap:13px}.top-stats small{font-size:7px}.top-stats b{font-size:10px}#home{grid-template-columns:1fr}.hero{min-height:350px}.hero h1{font-size:74px}.side-panel{min-height:340px}.bottom-grid{grid-template-columns:1fr}.level-grid{grid-template-columns:1fr}.level-art{height:90px}.hint-box{flex-wrap:wrap;gap:12px}.section-title h2{font-size:42px}.game-header h2{font-size:24px}.game-hud{gap:8px}.game-hud>div:not(.progress-track){min-width:48px}.game-hud small{font-size:7px}.game-hud b{font-size:10px}.results-card{padding:25px 14px}.results-card h2{font-size:42px}.result-stats b{font-size:19px}footer{gap:10px;flex-wrap:wrap}.hero-foot{gap:12px;font-size:8px}}
+
+html.playing,html.playing body{overflow:hidden;height:100%}
+#game.screen.active{position:fixed;inset:0;z-index:100;padding:0;display:block;background:#05070d;animation:none}
+#game .canvas-wrap{position:absolute;inset:0;border:0;background:#05070d;touch-action:none}
+#game .canvas-wrap canvas{width:100%;height:100%;max-height:none;object-fit:contain;display:block}
+#game .game-header{position:absolute;top:0;left:0;right:0;margin:0;padding:12px max(20px,env(safe-area-inset-right)) 28px max(20px,env(safe-area-inset-left));z-index:3;background:linear-gradient(#05070dea,#05070d00);pointer-events:none}
+#game .game-header button{pointer-events:auto}
+#game .gh-left{display:flex;gap:18px;min-width:150px}
+#game .game-header h2{font-size:22px;margin:2px 0 0;text-align:center}
+#game .game-header>div:nth-child(2){text-align:center}
+#game .game-hud{position:absolute;left:0;right:0;bottom:0;margin:0;padding:28px max(20px,env(safe-area-inset-right)) max(12px,env(safe-area-inset-bottom)) max(20px,env(safe-area-inset-left));z-index:3;background:linear-gradient(#05070d00,#05070dea);pointer-events:none}
+#game .game-overlay{z-index:6}
+#game .overlay-card{max-width:520px}
+#game .overlay-keys{margin-top:18px;font-size:9px;letter-spacing:1px;color:#717c92}
+@media(max-width:760px){#game .game-header h2{font-size:17px}#game .gh-left{min-width:0;gap:10px}}
+
+</style>
+</head>
+<body>
+<div class="shell">
+  <header class="topbar">
+    <div class="brand"><span class="brand-mark">◈</span><div>PULSE<span>//</span>SHIFT<small>RHYTHM PLATFORMER</small></div></div>
+    <div class="top-stats"><div><small>PULSE RATING</small><b id="topRating">0 PR</b></div><div><small>BEST STREAK</small><b id="topStreak">0</b></div></div>
+  </header>
+  <main>
+    <section id="home" class="screen active">
+      <div class="hero">
+        <div class="eyebrow"><i></i> THE BEAT IS YOUR WORLD</div>
+        <h1>MOVE WITH<br><span>THE PULSE.</span></h1>
+        <p>Jump on the beat. Survive the signal. Climb the ranks.</p>
+        <div class="hero-actions"><button id="playBtn" class="primary">PLAY NOW <span>↗</span></button><button id="ranksBtn" class="secondary">VIEW RANKS</button></div>
+        <div class="hero-foot"><span>01 / FIND YOUR RHYTHM</span><span>SPACE / ↑ TO JUMP</span></div>
+      </div>
+      <div class="side-panel">
+        <div class="panel-head"><span>YOUR SIGNAL</span><span class="live-dot">● ONLINE*</span></div>
+        <div class="rank-emblem" id="homeEmblem">◇</div>
+        <div class="rank-name" id="homeRank">SIGNAL</div>
+        <div class="rating-big"><span id="homeRating">0</span><small>PR</small></div>
+        <div class="progress-track"><div id="rankProgress"></div></div>
+        <div class="rank-range"><span id="rankFloor">0 PR</span><span id="rankCeil">500 PR</span></div>
+        <div class="side-divider"></div>
+        <div class="mini-row"><span>LEVELS CLEARED</span><b id="homeClears">0 / 3</b></div>
+        <div class="mini-row"><span>PERFECT RUNS</span><b id="homePerfect">0</b></div>
+        <p class="offline-note">*Local demo profile. Online rankings need a backend.</p>
+      </div>
+      <div class="bottom-grid">
+        <div class="feature-card"><span class="feature-icon">♫</span><div><b>SYNC TO THE BEAT</b><p>Read the rhythm and time your jumps.</p></div></div>
+        <div class="feature-card"><span class="feature-icon">⌁</span><div><b>CLIMB THE RANKS</b><p>Earn Pulse Rating with every clear.</p></div></div>
+        <div class="feature-card"><span class="feature-icon">✦</span><div><b>CHASE PERFECTION</b><p>Clean runs give you extra rewards.</p></div></div>
+      </div>
+    </section>
+    <section id="levels" class="screen">
+      <div class="section-title"><div><div class="eyebrow">SELECT YOUR FREQUENCY</div><h2>CHOOSE A <span>LEVEL.</span></h2></div><button class="text-btn" data-home>← BACK</button></div>
+      <div id="levelCards" class="level-grid"></div>
+      <div class="hint-box">CONTROLS <span>SPACE / W / ↑ = JUMP</span><span>ESC = PAUSE</span><span>R = RESTART</span></div>
+    </section>
+    <section id="game" class="screen">
+      <div class="canvas-wrap"><canvas id="gameCanvas" width="960" height="540" aria-label="PULSE SHIFT game area"></canvas>
+        <div class="game-header"><div class="gh-left"><button class="text-btn" id="quitBtn">← EXIT</button><button class="text-btn" id="pauseBtn">❚❚ PAUSE</button></div><div><small id="gameDifficulty">RANKED LEVEL</small><h2 id="gameTitle">FIRST SIGNAL</h2></div><div class="game-pr"><small>REWARD</small><b id="gameReward">+20 PR</b></div></div>
+        <div class="game-hud"><div><small>PROGRESS</small><b id="progressText">0%</b></div><div class="progress-track"><div id="levelProgress"></div></div><div><small>BEST STREAK</small><b id="streakText">0</b></div><div><small>ACCURACY</small><b id="accuracyText">—</b></div></div>
+        <div id="overlay" class="game-overlay"><div class="overlay-card"><div class="eyebrow">READY TO SYNC?</div><h2 id="overlayTitle">FIRST SIGNAL</h2><p id="overlayText">Jump over the obstacles. Stay on the beat.</p><button id="overlayBtn" class="primary">START RUN ↗</button><div class="overlay-keys">SPACE / ↑ / TAP = JUMP &nbsp;·&nbsp; P / ESC = PAUSE &nbsp;·&nbsp; R = RESTART</div></div></div>
+      </div>
+    </section>
+    <section id="results" class="screen">
+      <div class="results-card"><div class="eyebrow" id="resultEyebrow">SIGNAL ACQUIRED</div><div class="result-icon" id="resultIcon">✦</div><h2 id="resultTitle">LEVEL CLEARED</h2><p id="resultSubtitle">You found the rhythm.</p>
+        <div class="result-stats"><div><small>RATING EARNED</small><b id="earnedPR">+20 PR</b></div><div><small>ACCURACY</small><b id="resultAccuracy">100%</b></div><div><small>BEST STREAK</small><b id="resultStreak">12</b></div></div>
+        <div class="result-actions"><button id="nextBtn" class="primary">NEXT LEVEL ↗</button><button id="retryBtn" class="secondary">RETRY</button><button id="menuBtn" class="secondary">MENU</button></div>
+      </div>
+    </section>
+    <section id="ranks" class="screen">
+      <div class="section-title"><div><div class="eyebrow">YOUR CLIMB STARTS HERE</div><h2>THE <span>RANKS.</span></h2></div><button class="text-btn" data-home>← BACK</button></div>
+      <div id="rankList" class="rank-list"></div>
+    </section>
+  </main>
+  <footer><span>PULSE//SHIFT <b>v0.1</b></span><span>BUILT FOR THE BEAT</span><button id="resetBtn" class="reset-btn">RESET LOCAL SAVE</button></footer>
+</div>
+<script>
+const LEVELS = [
+ {"id":"first-signal","name":"FIRST SIGNAL","subtitle":"Find your footing.","difficulty":"1 / 10","tier":"SIGNAL","bpm":100,"reward":20,"speed":311.58,"color":"#56f5e2","desc":"A clean introduction at 1x speed. Hop spikes, climb onto platforms, cross pits and learn your first jump orb.","length":18,"end":5613,"objs":[{"t":"s","x":620,"w":30,"h":30,"y":0},{"t":"p","x":817,"w":90,"y":45,"th":45},{"t":"s","x":1180,"w":30,"h":30,"y":0},{"t":"s","x":1330,"w":30,"h":30,"y":0},{"t":"g","x":1539,"w":90},{"t":"p","x":1785,"w":150,"y":45,"th":15},{"t":"s","x":2115,"w":30,"h":30,"y":0},{"t":"p","x":2307,"w":120,"y":30,"th":30},{"t":"p","x":2427,"w":120,"y":60,"th":60},{"t":"g","x":2847,"w":150},{"t":"o","x":2922,"y":60,"r":16,"i":0},{"t":"p","x":3242,"w":240,"y":30,"th":30},{"t":"s","x":3392,"w":30,"h":30,"y":30},{"t":"s","x":3798,"w":30,"h":30,"y":0},{"t":"s","x":3948,"w":30,"h":30,"y":0},{"t":"g","x":4156,"w":90},{"t":"o","x":4545,"y":75,"r":16,"i":1},{"t":"p","x":4635,"w":30,"y":90,"th":90},{"t":"p","x":4925,"w":180,"y":30,"th":30},{"t":"s","x":5293,"w":30,"h":30,"y":0}]},
+ {"id":"neon-rush","name":"NEON RUSH","subtitle":"Don't lose the signal.","difficulty":"4 / 10","tier":"RHYTHM","bpm":128,"reward":35,"speed":387.42,"color":"#ff5ec4","desc":"2x speed. Spikes on platforms, bridges over danger and orbs that carry you over walls and pits.","length":21,"end":8244,"objs":[{"t":"s","x":629,"w":30,"h":30,"y":0},{"t":"s","x":659,"w":30,"h":30,"y":0},{"t":"p","x":999,"w":90,"y":30,"th":30},{"t":"g","x":1343,"w":120},{"t":"p","x":1725,"w":240,"y":30,"th":30},{"t":"s","x":1845,"w":30,"h":30,"y":30},{"t":"p","x":2277,"w":270,"y":45,"th":15},{"t":"s","x":2337,"w":30,"h":30,"y":0},{"t":"s","x":2367,"w":30,"h":30,"y":0},{"t":"s","x":2397,"w":30,"h":30,"y":0},{"t":"g","x":2796,"w":210},{"t":"o","x":2880,"y":60,"r":16,"i":0},{"t":"s","x":3353,"w":30,"h":30,"y":0},{"t":"s","x":3383,"w":30,"h":30,"y":0},{"t":"p","x":3723,"w":120,"y":30,"th":30},{"t":"p","x":3843,"w":150,"y":60,"th":60},{"t":"p","x":4161,"w":300,"y":45,"th":15},{"t":"s","x":4281,"w":30,"h":30,"y":45},{"t":"o","x":4806,"y":75,"r":16,"i":1},{"t":"p","x":4896,"w":30,"y":90,"th":90},{"t":"g","x":5156,"w":60},{"t":"s","x":5532,"w":30,"h":30,"y":0},{"t":"s","x":5562,"w":30,"h":30,"y":0},{"t":"s","x":5592,"w":30,"h":30,"y":0},{"t":"s","x":5622,"w":30,"h":30,"y":0},{"t":"o","x":5577,"y":75,"r":16,"i":2},{"t":"o","x":5902,"y":75,"r":16,"i":3},{"t":"p","x":5992,"w":150,"y":105,"th":105},{"t":"s","x":6440,"w":30,"h":30,"y":0},{"t":"s","x":6470,"w":30,"h":30,"y":0},{"t":"p","x":6817,"w":270,"y":45,"th":45},{"t":"s","x":6937,"w":30,"h":30,"y":45},{"t":"g","x":7336,"w":330},{"t":"o","x":7435,"y":70,"r":16,"i":4},{"t":"o","x":7567,"y":80,"r":16,"i":5},{"t":"s","x":7893,"w":30,"h":30,"y":0}]},
+ {"id":"overdrive","name":"OVERDRIVE","subtitle":"Prove your precision.","difficulty":"7 / 10","tier":"VOLTAGE","bpm":155,"reward":55,"speed":468.0,"color":"#ffb15e","desc":"3x speed. Chained orbs, towers and spike fields, all on the beat with little room for error.","length":24,"end":11411,"objs":[{"t":"s","x":1002,"w":30,"h":30,"y":0},{"t":"s","x":1032,"w":30,"h":30,"y":0},{"t":"s","x":1062,"w":30,"h":30,"y":0},{"t":"p","x":1372,"w":270,"y":30,"th":30},{"t":"s","x":1522,"w":30,"h":30,"y":30},{"t":"g","x":1900,"w":300},{"t":"o","x":2020,"y":60,"r":16,"i":0},{"t":"p","x":2467,"w":240,"y":45,"th":15},{"t":"s","x":2527,"w":30,"h":30,"y":0},{"t":"s","x":2557,"w":30,"h":30,"y":0},{"t":"s","x":2587,"w":30,"h":30,"y":0},{"t":"o","x":3010,"y":75,"r":16,"i":1},{"t":"p","x":3100,"w":30,"y":105,"th":105},{"t":"p","x":3302,"w":270,"y":45,"th":15},{"t":"s","x":3452,"w":30,"h":30,"y":45},{"t":"g","x":3893,"w":360},{"t":"o","x":4001,"y":70,"r":16,"i":2},{"t":"o","x":4145,"y":80,"r":16,"i":3},{"t":"s","x":4444,"w":30,"h":30,"y":0},{"t":"s","x":4474,"w":30,"h":30,"y":0},{"t":"s","x":4504,"w":30,"h":30,"y":0},{"t":"o","x":4830,"y":75,"r":16,"i":4},{"t":"p","x":4890,"w":150,"y":105,"th":105},{"t":"g","x":5342,"w":120},{"t":"s","x":5712,"w":30,"h":30,"y":0},{"t":"s","x":5742,"w":30,"h":30,"y":0},{"t":"s","x":5772,"w":30,"h":30,"y":0},{"t":"s","x":5802,"w":30,"h":30,"y":0},{"t":"s","x":5832,"w":30,"h":30,"y":0},{"t":"s","x":5862,"w":30,"h":30,"y":0},{"t":"o","x":5787,"y":75,"r":16,"i":5},{"t":"p","x":6106,"w":120,"y":30,"th":30},{"t":"p","x":6226,"w":120,"y":60,"th":60},{"t":"p","x":6626,"w":240,"y":30,"th":30},{"t":"s","x":6776,"w":30,"h":30,"y":30},{"t":"g","x":7154,"w":270},{"t":"o","x":7262,"y":75,"r":16,"i":6},{"t":"s","x":7705,"w":30,"h":30,"y":0},{"t":"s","x":7735,"w":30,"h":30,"y":0},{"t":"s","x":7765,"w":30,"h":30,"y":0},{"t":"p","x":8083,"w":240,"y":45,"th":15},{"t":"s","x":8143,"w":30,"h":30,"y":0},{"t":"s","x":8173,"w":30,"h":30,"y":0},{"t":"s","x":8203,"w":30,"h":30,"y":0},{"t":"o","x":8627,"y":60,"r":16,"i":7},{"t":"p","x":8747,"w":30,"y":90,"th":90},{"t":"g","x":8966,"w":360},{"t":"o","x":9074,"y":70,"r":16,"i":8},{"t":"o","x":9218,"y":80,"r":16,"i":9},{"t":"s","x":9517,"w":30,"h":30,"y":0},{"t":"s","x":9547,"w":30,"h":30,"y":0},{"t":"s","x":9577,"w":30,"h":30,"y":0},{"t":"s","x":9607,"w":30,"h":30,"y":0},{"t":"s","x":9637,"w":30,"h":30,"y":0},{"t":"o","x":9577,"y":90,"r":16,"i":10},{"t":"o","x":9903,"y":75,"r":16,"i":11},{"t":"p","x":10023,"w":150,"y":105,"th":105},{"t":"p","x":10345,"w":270,"y":45,"th":15},{"t":"s","x":10465,"w":30,"h":30,"y":45},{"t":"s","x":10966,"w":30,"h":30,"y":0},{"t":"s","x":10996,"w":30,"h":30,"y":0},{"t":"s","x":11026,"w":30,"h":30,"y":0}]}
+];
+</script>
+<script>
+const RANKS = [
+ {name:"SIGNAL",min:0,max:499,symbol:"◇",color:"#8798b8",desc:"Every great run starts with a first step."},
+ {name:"RHYTHM",min:500,max:999,symbol:"⬡",color:"#56f5e2",desc:"You're starting to find your flow."},
+ {name:"SYNC",min:1000,max:1499,symbol:"◆",color:"#5ea8ff",desc:"Your timing is becoming instinct."},
+ {name:"VOLTAGE",min:1500,max:1999,symbol:"✦",color:"#9d7cff",desc:"The signal is getting stronger."},
+ {name:"OVERDRIVE",min:2000,max:2499,symbol:"⬟",color:"#ffb15e",desc:"Fast, focused and hard to stop."},
+ {name:"SINGULARITY",min:2500,max:2999,symbol:"✧",color:"#ff5ec4",desc:"Only precision separates you from perfection."},
+ {name:"TRANSCENDENT",min:3000,max:Infinity,symbol:"✹",color:"#fff0a3",desc:"You are the pulse."}
+];
+const SAVE_KEY = "pulseShiftSaveV1";
+function loadSave(){try{return {...{pr:0,clears:[],perfect:0,bestStreak:0,results:{}},...JSON.parse(localStorage.getItem(SAVE_KEY)||"{}")}}catch{return {pr:0,clears:[],perfect:0,bestStreak:0,results:{}}}}
+let save = loadSave();
+function persistSave(){localStorage.setItem(SAVE_KEY,JSON.stringify(save))}
+function getRank(pr=save.pr){return RANKS.find(r=>pr>=r.min&&pr<=r.max)||RANKS[0]}
+function getNextRank(rank=getRank()){const i=RANKS.indexOf(rank);return RANKS[Math.min(i+1,RANKS.length-1)]}
+function updateProfile(){
+ const rank=getRank(), next=getNextRank(rank), range=rank.max===Infinity?1000:rank.max-rank.min+1;
+ document.querySelector("#topRating").textContent=save.pr+" PR";
+ document.querySelector("#topStreak").textContent=save.bestStreak;
+ document.querySelector("#homeEmblem").textContent=rank.symbol;
+ document.querySelector("#homeEmblem").style.color=rank.color;
+ document.querySelector("#homeRank").textContent=rank.name;
+ document.querySelector("#homeRating").textContent=save.pr;
+ document.querySelector("#rankFloor").textContent=rank.min+" PR";
+ document.querySelector("#rankCeil").textContent=rank.max===Infinity?"∞ PR":rank.max+" PR";
+ document.querySelector("#rankProgress").style.width=rank.max===Infinity?Math.min(100,(save.pr-rank.min)/10)+"%":Math.max(0,Math.min(100,(save.pr-rank.min)/range*100))+"%";
+ document.querySelector("#homeClears").textContent=save.clears.length+" / "+LEVELS.length;
+ document.querySelector("#homePerfect").textContent=save.perfect;
+}
+function renderRanks(){
+ const el=document.querySelector("#rankList"), current=getRank();
+ el.innerHTML=RANKS.map(r=>`<div class="rank-row ${r===current?'current':''}" style="--rank-color:${r.color}"><div class="rank-symbol">${r.symbol}</div><div class="rank-desc"><b>${r.name}</b><p>${r.desc}</p></div><div class="rank-pts">${r.min}–${r.max===Infinity?'∞':r.max} PR ${r===current?' · YOU ARE HERE':''}</div></div>`).join("");
+}
+
+</script>
+<script>
+// ===== PULSE//SHIFT engine: pure, deterministic, 60 Hz fixed step, Geometry Dash units =====
+// 1 block = 30 units. The cube is 30x30. Heights are units above the ground line (up = positive).
+// World x is the cube's left edge. Constants follow the community-documented Geometry Dash cube values.
+const SIM={
+ SIZE:30,            // cube side (1 block)
+ G:0.958199,         // gravity, units/frame^2 at 60 steps/s
+ JUMP:11.180032,     // cube jump / yellow-orb launch velocity, units/frame
+ TERM:15,            // terminal fall velocity, units/frame
+ SPEED_1X:311.58,    // 1x speed in units/second (10.386 blocks/s); 2x=387.42, 3x=468.0, 4x=576.0
+ ROT:415.3848,       // cube spin in the air, degrees/second (cosmetic)
+ INNER:9,            // GD "inner hitbox": touching a solid with this 9x9 core kills (forgives block corners)
+ SPIKE_W:.2,SPIKE_H:.4, // spike hazard hitbox = 20% of its width x 40% of its height (6x12 on a 30-unit spike)
+ BUF:8,              // input buffer: a press up to 8 frames early still fires on landing / orb contact
+ ORB_REACH:33,       // orb activates when the cube centre is within this distance of the orb centre
+ PIT_DEATH:-60
+};
+const EMPTY_ACT={s:[],p:[],g:[],o:[]};
+// Object types: s=spike {x,w,h,y?}  p=platform {x,w,y(top),th}  g=pit {x,w}  o=jump orb {x,y,r}
+function prepLevel(L){
+ L.sp=L.speed/60;
+ const objs=L.objs.slice().sort((a,b)=>a.x-b.x);
+ let oi=0;for(const o of objs)if(o.t==="o")o.i=oi++;
+ const T=Math.ceil(L.end/L.sp)+4;L.T=T;L.act=new Array(T+2);
+ for(let t=0;t<=T+1;t++)L.act[t]={s:[],p:[],g:[],o:[]};
+ for(const o of objs){
+  const f0=Math.max(0,Math.floor((o.x-80)/L.sp)),f1=Math.min(T+1,Math.ceil((o.x+(o.w||0)+80)/L.sp));
+  for(let t=f0;t<=f1;t++)L.act[t][o.t].push(o);
+ }
+ return L;
+}
+function newSim(){return{t:0,h:0,vy:0,on:true,buf:0,armed:0,orbUsed:-1,dead:0,win:0,ev:0}}
+function cloneSim(s){return{t:s.t,h:s.h,vy:s.vy,on:s.on,buf:s.buf,armed:s.armed,orbUsed:s.orbUsed,dead:s.dead,win:s.win,ev:0}}
+function simKey(s){return s.t+"|"+s.h.toFixed(3)+"|"+s.vy.toFixed(3)+"|"+(s.on?1:0)+"|"+s.buf+"|"+s.orbUsed}
+function orbAt(orbs,wx,h,used){
+ const cx=wx+SIM.SIZE/2,cy=h+SIM.SIZE/2;
+ for(const o of orbs){if(o.i<=used)continue;const dx=cx-o.x,dy=cy-o.y;if(dx*dx+dy*dy<SIM.ORB_REACH*SIM.ORB_REACH)return o.i}
+ return -1;
+}
+// Advance one frame.
+//  press: a new jump press this frame (buffered for SIM.BUF frames).
+//  held : jump key is currently down. A press made in the air stays buffered for as long as it is held,
+//         so an orb fires the instant you touch it (orb buffering).
+// st.ev: 1 = ground jump, 2 = orb jump.
+function stepSim(L,st,press,held){
+ const S=SIM.SIZE,I=SIM.INNER;st.ev=0;
+ if(press){st.buf=SIM.BUF;st.armed=1}
+ let wx=st.t*L.sp;
+ if(st.buf>0){
+  if(st.on){st.vy=SIM.JUMP;st.on=false;st.buf=0;st.armed=0;st.ev=1}
+  else{
+   const oi=orbAt((L.act[st.t]||EMPTY_ACT).o,wx,st.h,st.orbUsed);
+   if(oi>=0){st.vy=SIM.JUMP;st.orbUsed=oi;st.buf=0;st.armed=0;st.ev=2}
+   else if(!(held&&st.armed))st.buf--;
+  }
+ }
+ const hPrev=st.h;
+ if(!st.on){st.vy=Math.max(st.vy-SIM.G,-SIM.TERM);st.h+=st.vy}
+ st.t++;wx=st.t*L.sp;
+ const act=L.act[st.t]||EMPTY_ACT,pl=wx,pr=wx+S,cx=wx+S/2;
+ let dead=false;
+ // solid platforms: land on top, bump the underside, die on the 9x9 inner hitbox
+ for(const p of act.p){
+  if(!(p.x<pr&&p.x+p.w>pl))continue;
+  const top=p.y,bot=p.y-p.th;
+  if(st.vy<=0&&hPrev>=top-1e-6&&st.h<top){st.h=top;st.vy=0;st.on=true;continue}
+  if(st.h>=top-1e-6)continue;
+  if(st.h+S<=bot)continue;
+  const ib=st.h+(S-I)/2,it=ib+I;
+  if(cx+I/2>p.x&&cx-I/2<p.x+p.w&&ib<top&&it>bot){
+   if(st.vy>0&&hPrev+S<=bot+1e-6){st.h=bot-S;st.vy=0;continue}
+   dead=true;continue;
+  }
+  if(st.h+S/2>=top){if(st.vy<=0){st.h=top;st.vy=0;st.on=true}}      // clipped the top corner: stand on it
+  else if(st.vy>0){st.h=Math.min(st.h,bot-S);st.vy=0}                // clipped the underside: head bump
+ }
+ // ground (pits are gaps in it; the cube falls only when completely over one)
+ let inPit=false;for(const g of act.g)if(pl>=g.x&&pr<=g.x+g.w){inPit=true;break}
+ if(!inPit){if(st.h<0){if(hPrev>=-1e-6){st.h=0;st.vy=0;st.on=true}else dead=true}}
+ else if(st.h<SIM.PIT_DEATH)dead=true;
+ if(st.on&&!dead){
+  let sup=inPit?-1e9:0;
+  for(const p of act.p)if(p.x<pr&&p.x+p.w>pl&&p.y<=st.h+1e-6&&p.y>sup)sup=p.y;
+  if(st.h>sup+1e-6){st.on=false;st.vy=0}
+ }
+ // spikes: small hazard hitbox centred on the base of the spike
+ for(const s of act.s){
+  const hw=s.w*SIM.SPIKE_W,l=s.x+(s.w-hw)/2,r=l+hw,base=s.y||0,top=base+s.h*SIM.SPIKE_H;
+  if(r>pl&&l<pr&&st.h<top&&st.h+S>base){dead=true;break}
+ }
+ if(dead)st.dead=1;
+ else if(wx>L.end)st.win=1;
+ return st;
+}
+
+const canvas=document.querySelector("#gameCanvas"),ctx=canvas.getContext("2d");
+const VH=540,Z=1.6;let VW=960,wU=600,hU=337.5,GU=267,PXU=140; // view is drawn in Geometry Dash units (1 block = 30), zoomed by Z
+let currentLevel=null,gameState="idle",raf=0,lastTime=0,acc=0,sim=newSim(),prevH=0,pendingPress=false,held=false,rot=0,streak=0,bestStreak=0,judged=0,perfectHits=0,orbFx=[];
+const $=s=>document.querySelector(s);
+const ORB_COLOR="#ffe45e";
+const INTRO="Jump spikes and pits, land on platforms. Orbs give a mid-air jump: tap just before one, or hold, and it fires the moment you touch it.";
+function resizeCanvas(){const aw=window.innerWidth||960,ah=window.innerHeight||540;VW=Math.round(Math.min(1180,Math.max(780,VH*aw/ah)));canvas.width=VW;canvas.height=VH;wU=VW/Z;hU=VH/Z;GU=Math.round(hU-72);drawScene()}
+function showScreen(id){document.querySelectorAll(".screen").forEach(s=>s.classList.remove("active"));$("#"+id).classList.add("active");document.documentElement.classList.toggle("playing",id==="game");if(id!=="game"&&id!=="results")leaveFullscreen()}
+function enterFullscreen(){try{const el=document.documentElement;if(!document.fullscreenElement&&el.requestFullscreen)el.requestFullscreen().catch(()=>{})}catch(e){}}
+function leaveFullscreen(){try{if(document.fullscreenElement&&document.exitFullscreen)document.exitFullscreen().catch(()=>{})}catch(e){}}
+function renderLevels(){
+ $("#levelCards").innerHTML=LEVELS.map((l,i)=>`<button class="level-card" data-level="${i}"><div class="level-art"></div><div class="level-info"><div class="level-meta"><span>LEVEL 0${i+1}</span><span>${l.difficulty}</span></div><h3>${l.name}</h3><p>${l.desc}</p><div class="level-bottom"><span>${l.bpm} BPM</span><b>+${l.reward} PR ↗</b></div></div></button>`).join("");
+ document.querySelectorAll("[data-level]").forEach(b=>b.addEventListener("click",()=>openLevel(LEVELS[+b.dataset.level])));
+}
+function openLevel(level){
+ cancelAnimationFrame(raf);currentLevel=level;if(!level.act)prepLevel(level);
+ level.pits=level.objs.filter(o=>o.t==="g").sort((a,b)=>a.x-b.x);
+ $("#gameTitle").textContent=level.name;$("#gameDifficulty").textContent="DIFFICULTY "+level.difficulty;$("#gameReward").textContent="+"+level.reward+" PR";
+ $("#overlayTitle").textContent=level.name;$("#overlayText").textContent=INTRO;$("#overlayBtn").textContent="START RUN ↗";$("#overlay").classList.remove("hidden");
+ gameState="idle";sim=newSim();prevH=0;rot=0;held=false;orbFx=[];acc=0;showScreen("game");enterFullscreen();resizeCanvas();updateHUD();
+}
+function startRun(){
+ cancelAnimationFrame(raf);gameState="running";sim=newSim();prevH=0;rot=0;pendingPress=false;streak=0;bestStreak=0;judged=0;perfectHits=0;orbFx=[];acc=0;lastTime=performance.now();
+ $("#overlay").classList.add("hidden");updateHUD();raf=requestAnimationFrame(loop);
+}
+function press(){if(gameState==="running")pendingPress=true}
+// Fixed 60 Hz physics (identical on every screen); rendering interpolates between steps for smooth motion
+function loop(now){
+ if(gameState!=="running")return;
+ acc+=Math.min((now-lastTime)/16.667,5);lastTime=now;
+ while(acc>=1){
+  acc-=1;const t0=sim.t;prevH=sim.h;
+  stepSim(currentLevel,sim,pendingPress,held);pendingPress=false;
+  if(!sim.on)rot+=SIM.ROT*Math.PI/180/60;else{const q=Math.PI/2,tg=Math.round(rot/q)*q;rot+=(tg-rot)*.35} // GD: spins in the air, lands flat
+  if(sim.ev){streak++;bestStreak=Math.max(bestStreak,streak);judged++;if(Math.abs((t0*currentLevel.bpm/3600)%1-.5)<.16)perfectHits++;if(sim.ev===2)orbFx.push({i:sim.orbUsed,t:sim.t})}
+  if(sim.dead){finishRun(false);return}
+  if(sim.win){finishRun(true);return}
+ }
+ drawScene();updateHUD();raf=requestAnimationFrame(loop);
+}
+function pauseGame(){if(gameState!=="running")return;gameState="paused";$("#overlayTitle").textContent="PAUSED";$("#overlayText").textContent="Take a breath. Your run is waiting.";$("#overlayBtn").textContent="RESUME ↗";$("#overlay").classList.remove("hidden")}
+function resumeGame(){gameState="running";acc=0;lastTime=performance.now();$("#overlay").classList.add("hidden");raf=requestAnimationFrame(loop)}
+function drawScene(){
+ const L=currentLevel,col=L?L.color:"#56f5e2",w=wU,h=hU,S=SIM.SIZE;
+ const rx=L?(sim.t+(gameState==="running"?acc:0))*L.sp:0,hd=gameState==="running"?prevH+(sim.h-prevH)*Math.min(1,acc):sim.h;
+ const elapsed=sim.t/60,beat=L?L.bpm/60:1,pulse=(Math.sin(elapsed*Math.PI*2*beat)+1)/2;
+ ctx.setTransform(1,0,0,1,0,0);ctx.clearRect(0,0,VW,VH);
+ const g=ctx.createLinearGradient(0,0,0,VH);g.addColorStop(0,"#10182b");g.addColorStop(1,"#080b14");ctx.fillStyle=g;ctx.fillRect(0,0,VW,VH);
+ ctx.setTransform(Z,0,0,Z,0,0);
+ // stars + beat grid (parallax, drawn in block units)
+ for(let i=0;i<90;i++){const x=((i*93-rx*.1)%(w+30)+w+30)%(w+30),y=(i*41)%(GU-20);ctx.fillStyle=i%4===0?col:"#44516a";ctx.globalAlpha=i%4===0?.75:.4;ctx.fillRect(x,y,1.4,1.4)}
+ ctx.globalAlpha=1;ctx.strokeStyle=col;ctx.globalAlpha=.07+pulse*.1;ctx.lineWidth=.6;
+ for(let x=-((rx*.4)%S);x<w;x+=S){ctx.beginPath();ctx.moveTo(x,0);ctx.lineTo(x,h);ctx.stroke()}
+ for(let y=GU-S;y>0;y-=S){ctx.beginPath();ctx.moveTo(0,y);ctx.lineTo(w,y);ctx.stroke()}
+ ctx.globalAlpha=1;
+ // ground with pits
+ ctx.fillStyle="#0b1120";ctx.fillRect(0,GU,w,h-GU);
+ for(let x=-((rx*1.1)%28);x<w;x+=28){ctx.fillStyle="#192338";ctx.fillRect(x,GU+10,14,2);ctx.fillRect(x+8,GU+28,14,2)}
+ ctx.strokeStyle=col;ctx.lineWidth=1.4;ctx.shadowColor=col;ctx.shadowBlur=8;ctx.globalAlpha=.85;
+ let cur=0;const pits=L?L.pits:[];
+ const seg=(a,b)=>{if(b>a){ctx.beginPath();ctx.moveTo(a,GU);ctx.lineTo(b,GU);ctx.stroke()}};
+ for(const p of pits){const a=p.x-rx+PXU,b=a+p.w;if(b<-10||a>w+10)continue;seg(cur,Math.min(a,w));
+  ctx.shadowBlur=0;const pg=ctx.createLinearGradient(0,GU,0,h);pg.addColorStop(0,"#02030a");pg.addColorStop(1,"#080b14");ctx.fillStyle=pg;ctx.fillRect(a,GU-.5,p.w,h-GU+.5);
+  ctx.strokeStyle=col;ctx.shadowBlur=8;ctx.beginPath();ctx.moveTo(a,GU);ctx.lineTo(a,h);ctx.moveTo(b,GU);ctx.lineTo(b,h);ctx.globalAlpha=.4;ctx.stroke();ctx.globalAlpha=.85;cur=Math.max(cur,b)}
+ seg(cur,w);ctx.shadowBlur=0;ctx.globalAlpha=1;
+ if(L){
+  // platforms: tiled blocks and half-block slabs
+  for(const p of L.objs){if(p.t!=="p")continue;const x=p.x-rx+PXU;if(x>w+20||x+p.w<-20)continue;const top=GU-p.y;
+   const pg=ctx.createLinearGradient(0,top,0,top+p.th);pg.addColorStop(0,"#1a2540");pg.addColorStop(1,"#0e1424");ctx.fillStyle=pg;ctx.fillRect(x,top,p.w,p.th);
+   ctx.strokeStyle=col;ctx.globalAlpha=.28;ctx.lineWidth=.6;
+   for(let gx=x;gx<=x+p.w+.1;gx+=S){ctx.beginPath();ctx.moveTo(gx,top);ctx.lineTo(gx,top+p.th);ctx.stroke()}
+   for(let gy=top;gy<=top+p.th+.1;gy+=S){ctx.beginPath();ctx.moveTo(x,gy);ctx.lineTo(x+p.w,gy);ctx.stroke()}
+   ctx.strokeRect(x,top,p.w,p.th);
+   ctx.globalAlpha=1;ctx.lineWidth=2;ctx.shadowColor=col;ctx.shadowBlur=12;ctx.beginPath();ctx.moveTo(x,top+.5);ctx.lineTo(x+p.w,top+.5);ctx.stroke();ctx.shadowBlur=0}
+  // spikes
+  ctx.fillStyle=col;ctx.shadowColor=col;ctx.shadowBlur=15;
+  for(const s of L.objs){if(s.t!=="s")continue;const x=s.x-rx+PXU;if(x<-40||x>w+40)continue;const by=GU-(s.y||0);ctx.beginPath();ctx.moveTo(x,by);ctx.lineTo(x+s.w/2,by-s.h);ctx.lineTo(x+s.w,by);ctx.closePath();ctx.fill()}
+  ctx.shadowBlur=0;
+  // orbs
+  const pcx=PXU+S/2,pcy=GU-hd-S/2;
+  for(const o of L.objs){if(o.t!=="o")continue;const x=o.x-rx+PXU;if(x<-40||x>w+40)continue;const y=GU-o.y;
+   const used=sim.orbUsed>=o.i&&gameState!=="idle",near=!used&&Math.hypot(pcx-x,pcy-y)<SIM.ORB_REACH+6;
+   const r=o.r+Math.sin(elapsed*Math.PI*2*beat)*1+(near?2:0);
+   ctx.globalAlpha=used?.3:1;ctx.shadowColor=ORB_COLOR;ctx.shadowBlur=used?4:22;
+   const rg=ctx.createRadialGradient(x,y,1,x,y,r);rg.addColorStop(0,"#fff8c4");rg.addColorStop(.55,ORB_COLOR+"aa");rg.addColorStop(1,ORB_COLOR+"00");ctx.fillStyle=rg;ctx.beginPath();ctx.arc(x,y,r+3,0,7);ctx.fill();
+   ctx.strokeStyle=ORB_COLOR;ctx.lineWidth=near?2.6:2;ctx.beginPath();ctx.arc(x,y,r,0,7);ctx.stroke();
+   ctx.fillStyle="#fffbe0";ctx.beginPath();ctx.arc(x,y,2.6,0,7);ctx.fill();ctx.shadowBlur=0;ctx.globalAlpha=1;
+   const fx=orbFx.find(f=>f.i===o.i);if(fx){const a=(sim.t-fx.t)/22;if(a<1){ctx.strokeStyle=ORB_COLOR;ctx.globalAlpha=1-a;ctx.lineWidth=1.4;ctx.beginPath();ctx.arc(x,y,r+a*30,0,7);ctx.stroke();ctx.globalAlpha=1}}}
+ }
+ // player cube (30x30, spins in the air like Geometry Dash, lands flat)
+ ctx.save();ctx.translate(PXU+S/2,GU-hd-S/2);ctx.rotate(rot);
+ ctx.shadowColor=col;ctx.shadowBlur=22;ctx.fillStyle=col;ctx.fillRect(-S/2,-S/2,S,S);ctx.shadowBlur=0;
+ ctx.strokeStyle="#09121c";ctx.globalAlpha=.35;ctx.lineWidth=1.2;ctx.strokeRect(-S/2+2,-S/2+2,S-4,S-4);ctx.globalAlpha=1;
+ ctx.fillStyle="#09121c";ctx.fillRect(-7.5,-5,4.5,5.5);ctx.fillRect(3,-5,4.5,5.5);ctx.fillRect(-5.5,5.5,11,3.2);ctx.restore();
+ ctx.setTransform(1,0,0,1,0,0);
+ ctx.fillStyle="#9ca9c0";ctx.font="12px monospace";ctx.textAlign="right";ctx.fillText(L?L.bpm+" BPM":"PULSE//SHIFT",VW-18,GU*Z+34);ctx.textAlign="left";
+}
+function updateHUD(){
+ if(!currentLevel)return;const max=currentLevel.end,p=Math.min(100,Math.floor(sim.t*currentLevel.sp/max*100)),a=judged?Math.min(100,Math.round(perfectHits/judged*100)):"—";
+ $("#progressText").textContent=p+"%";$("#levelProgress").style.width=p+"%";$("#streakText").textContent=bestStreak;$("#accuracyText").textContent=a==="—"?a:a+"%";
+}
+function finishRun(won){
+ cancelAnimationFrame(raf);gameState=won?"won":"dead";const accuracy=judged?Math.min(100,Math.round(perfectHits/judged*100)):0;let reward=0;
+ if(won){const already=save.clears.includes(currentLevel.id);reward=already?Math.max(5,Math.round(currentLevel.reward*.25)):currentLevel.reward;reward+=accuracy>=85?5:0;reward+=accuracy===100?10:0;save.pr+=reward;if(!already)save.clears.push(currentLevel.id);if(accuracy===100)save.perfect++;save.results[currentLevel.id]={bestAccuracy:Math.max(save.results[currentLevel.id]?.bestAccuracy||0,accuracy),clears:(save.results[currentLevel.id]?.clears||0)+1};}
+ save.bestStreak=Math.max(save.bestStreak,bestStreak);persistSave();updateProfile();renderRanks();
+ $("#resultEyebrow").textContent=won?"SIGNAL ACQUIRED":"SIGNAL LOST";$("#resultIcon").textContent=won?"✦":"×";$("#resultTitle").textContent=won?"LEVEL CLEARED":"RUN ENDED";$("#resultSubtitle").textContent=won?"You found the rhythm. Keep climbing.":"The beat got away. Reset and try again.";$("#earnedPR").textContent=(won?"+":"")+reward+" PR";$("#resultAccuracy").textContent=accuracy+"%";$("#resultStreak").textContent=bestStreak;
+ const idx=LEVELS.indexOf(currentLevel);$("#nextBtn").style.display=won&&idx<LEVELS.length-1?"inline-block":"none";showScreen("results");
+}
+$("#playBtn").addEventListener("click",()=>{renderLevels();showScreen("levels")});$("#ranksBtn").addEventListener("click",()=>{renderRanks();showScreen("ranks")});document.querySelectorAll("[data-home]").forEach(b=>b.addEventListener("click",()=>showScreen("home")));
+$("#overlayBtn").addEventListener("click",()=>{if(gameState==="paused")resumeGame();else startRun()});
+$("#quitBtn").addEventListener("click",()=>{cancelAnimationFrame(raf);gameState="idle";showScreen("levels")});
+$("#pauseBtn").addEventListener("click",pauseGame);
+$("#retryBtn").addEventListener("click",()=>openLevel(currentLevel));$("#menuBtn").addEventListener("click",()=>showScreen("home"));$("#nextBtn").addEventListener("click",()=>{const i=LEVELS.indexOf(currentLevel);openLevel(LEVELS[Math.min(i+1,LEVELS.length-1)])});
+$("#resetBtn").addEventListener("click",()=>{if(confirm("Reset all local PULSE//SHIFT progress?")){localStorage.removeItem(SAVE_KEY);save=loadSave();updateProfile();renderRanks()}});
+window.addEventListener("keydown",e=>{
+ if(["Space","ArrowUp","KeyW"].includes(e.code)){e.preventDefault();if(e.repeat)return;if(gameState==="idle"&&$("#game").classList.contains("active"))startRun();else if(gameState==="paused")resumeGame();else{held=true;press()}}
+ if((e.code==="Escape"||e.code==="KeyP")&&gameState==="running")pauseGame();
+ if(e.code==="KeyR"&&$("#game").classList.contains("active"))openLevel(currentLevel);
+});
+window.addEventListener("keyup",e=>{if(["Space","ArrowUp","KeyW"].includes(e.code))held=false});
+canvas.addEventListener("pointerdown",e=>{e.preventDefault();held=true;press()});
+for(const ev of ["pointerup","pointercancel","pointerleave"])canvas.addEventListener(ev,()=>{held=false});
+window.addEventListener("blur",()=>{held=false});
+document.addEventListener("fullscreenchange",()=>{if(!document.fullscreenElement&&gameState==="running")pauseGame()});
+window.addEventListener("resize",()=>{if($("#game").classList.contains("active"))resizeCanvas()});
+renderLevels();updateProfile();renderRanks();drawScene();
+
+</script>
+</body>
+</html>
